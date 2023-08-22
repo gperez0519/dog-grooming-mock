@@ -14,7 +14,7 @@ const Testimonials = () => {
     const fetchTestimonials = async () => {
       try {
         const response = await fetch("/api/testimonials", {
-          cache: "no-cache",
+          cache: "no-store",
         });
         const testimonialsData = await response.json();
 
