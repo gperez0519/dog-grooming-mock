@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Open Sans", sans-serif;
+}
+
+.main-image {
+  /* The image used */
+  background-image: url("./images/doggrooming-1280x853.jpg");
+  background-size: cover;
+  background-position: 100% 20%;
+  height: 50vh;
+}
+
+.main-text {
+  opacity: 0.8;
+}
+
+.dog-logo:hover {
+  animation: 1s infinite shake;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
