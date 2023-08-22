@@ -9,13 +9,13 @@ const testimonialSchema = new mongoose.Schema<TestimonialType>({
 });
 
 export const setupTestimonial = () => {
-  if (!mongoose.models.Testimonial) {
+  if (!mongoose.models.testimonial) {
     Testimonial = mongoose.model<TestimonialType>(
       "testimonial",
       testimonialSchema
     );
   } else {
-    Testimonial = mongoose.models.Testimonial;
+    Testimonial = mongoose.models.testimonial;
   }
 
   return Testimonial;

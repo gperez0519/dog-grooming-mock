@@ -13,7 +13,9 @@ const Testimonials = () => {
     // Retrieve all client testimonials
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch("/api/testimonials");
+        const response = await fetch("/api/testimonials", {
+          cache: "no-cache",
+        });
         const testimonialsData = await response.json();
 
         setTestimonials(testimonialsData.testimonials);
