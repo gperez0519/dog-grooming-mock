@@ -1,6 +1,6 @@
 import { dbConnect } from "@/mongo/db";
 import { setupTestimonial } from "@/mongo/models/Testimonial";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { Model } from "mongoose";
 import { TestimonialType } from "@/app/types/TestimonialTypes";
 

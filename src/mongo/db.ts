@@ -4,7 +4,7 @@ let alreadyConnected: boolean = false;
 
 export const dbConnect = async (dbName: string) => {
   let message = alreadyConnected ? "Already connected to DB" : "";
-  console.log(process.env.NODE_ENV);
+
   if (!alreadyConnected) {
     let MONGODB_API_ENV_URL = "";
     let APPENDED_QUERY_URI = "";
@@ -12,20 +12,19 @@ export const dbConnect = async (dbName: string) => {
     // Check which environment we are in and use the relevant mongodb instance.
     switch (process.env.NODE_ENV) {
       case "development":
-        console.log("development test case hit");
         MONGODB_API_ENV_URL = process.env.MONGODB_API_URL || ""; // LOCAL
         break;
       case "production":
-        console.log("production test case hit");
         MONGODB_API_ENV_URL = process.env.NEXT_PUBLIC_MONGODB_API || ""; // PRODUCTION
         APPENDED_QUERY_URI = "?retryWrites=true&w=majority";
       default:
         break;
     }
 
+    // Connect to the database with compiled MongoDB database URL
     if (MONGODB_API_ENV_URL) {
       let MONGODB_API_URL = `${MONGODB_API_ENV_URL}/${dbName}${APPENDED_QUERY_URI}`;
-      console.log(MONGODB_API_URL);
+
       await mongoose
         .connect(MONGODB_API_URL)
         .then(() => {

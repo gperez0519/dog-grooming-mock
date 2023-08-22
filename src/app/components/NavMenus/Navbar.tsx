@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useCallback, memo } from "react";
 import { FaDog } from "react-icons/fa";
 
 import Link from "next/link";
