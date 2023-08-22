@@ -11,7 +11,7 @@ const testimonialSchema = new mongoose.Schema<TestimonialType>({
 export const setupTestimonial = () => {
   if (!mongoose.models.Testimonial) {
     Testimonial = mongoose.model<TestimonialType>(
-      "Testimonial",
+      "testimonial",
       testimonialSchema
     );
   } else {

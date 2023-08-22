@@ -24,16 +24,16 @@ export async function GET() {
   return NextResponse.json({ testimonials });
 }
 
-export async function POST(request: NextRequest) {
-  const { name, testimony } = await request.json();
-  if (!TestimonialSchema) {
-    TestimonialSchema = setupTestimonial();
-  }
+// export async function POST(request: NextRequest) {
+//   const { name, testimony } = await request.json();
+//   if (!TestimonialSchema) {
+//     TestimonialSchema = setupTestimonial();
+//   }
 
-  await TestimonialSchema.create({
-    name,
-    testimony,
-  });
+//   await TestimonialSchema.create({
+//     name,
+//     testimony,
+//   });
 
-  return NextResponse.json({ message: "Testimonial created" }, { status: 201 });
-}
+//   return NextResponse.json({ message: "Testimonial created" }, { status: 201 });
+// }
