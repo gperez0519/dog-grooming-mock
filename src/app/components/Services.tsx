@@ -170,10 +170,10 @@ const Services = () => {
           </div>
         </div>
         <div className="service-one">
-          <div className="break-words bg-yellow-400 font-bold text-white text-center p-2 rounded-t-md">
+          <div className="break-words bg-blue-500 font-bold text-white text-center p-2 rounded-t-md">
             Puppers Premium
           </div>
-          <div className="border-4 border-yellow-400 p-5">
+          <div className="border-4 border-blue-500 p-5">
             <div className="flex justify-center">
               <ul className="list-none list-inside">
                 <li>
