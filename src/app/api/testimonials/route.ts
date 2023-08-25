@@ -6,34 +6,23 @@ import { TestimonialType } from "@/app/types/TestimonialTypes";
 
 let TestimonialSchema: Model<TestimonialType> | null;
 
-let dbConnectStatus: Promise<string>;
-
-dbConnectStatus = dbConnect("dog-grooming");
-
-dbConnectStatus
-  .then((status) => console.log(status))
-  .catch((err) => console.log(err));
-
 export async function GET() {
-  if (!TestimonialSchema) {
-    TestimonialSchema = setupTestimonial();
+  const mongoDBConnection = dbConnect("dog-grooming");
+  if (mongoDBConnection) {
+    mongoDBConnection.then(() => console.log("Connection established"));
+    if (!TestimonialSchema) {
+      TestimonialSchema = setupTestimonial();
+    }
+
+    const projection = {
+      name: true,
+      testimony: true,
+    };
+
+    const testimonials = await TestimonialSchema.find({})
+      .sort({ name: 1 })
+      .select(projection);
+
+    return NextResponse.json({ testimonials }, { status: 200 });
   }
-
-  const testimonials = await TestimonialSchema.find();
-
-  return NextResponse.json({ testimonials });
 }
-
-// export async function POST(request: NextRequest) {
-//   const { name, testimony } = await request.json();
-//   if (!TestimonialSchema) {
-//     TestimonialSchema = setupTestimonial();
-//   }
-
-//   await TestimonialSchema.create({
-//     name,
-//     testimony,
-//   });
-
-//   return NextResponse.json({ message: "Testimonial created" }, { status: 201 });
-// }

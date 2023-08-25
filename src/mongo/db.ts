@@ -1,11 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
-let alreadyConnected: boolean = false;
+let mongoDBConnection: Promise<Mongoose>;
 
 export const dbConnect = async (dbName: string) => {
-  let message = alreadyConnected ? "Already connected to DB" : "";
-
-  if (!alreadyConnected) {
+  try {
+    if (await mongoDBConnection) return { mongoDBConnection };
     let MONGODB_API_ENV_URL = "";
     let APPENDED_QUERY_URI = "";
 
@@ -25,17 +24,15 @@ export const dbConnect = async (dbName: string) => {
     if (MONGODB_API_ENV_URL) {
       let MONGODB_API_URL = `${MONGODB_API_ENV_URL}/${dbName}${APPENDED_QUERY_URI}`;
 
-      await mongoose
-        .connect(MONGODB_API_URL)
-        .then(() => {
-          message = `Successfully connected to DB`;
-          alreadyConnected = true;
-        })
-        .catch((err) => {
-          message = `Error attempting to connect to DB: ${err.message}`;
-        });
-    }
-  }
+      mongoDBConnection = Promise.resolve(mongoose.connect(MONGODB_API_URL));
+      console.log("Initial connection to the MongoDB database");
 
-  return message;
+      return { mongoDBConnection };
+    }
+  } catch (error) {
+    console.error(
+      "Error occurred while attempting to connect to the database: ",
+      error
+    );
+  }
 };
