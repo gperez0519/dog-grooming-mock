@@ -3,9 +3,10 @@ import Link from "next/link";
 
 interface Props {
   navMenuToggle: boolean;
+  toggleNavMenu: () => void;
 }
 
-const MobileNavMenu: React.FC<Props> = ({ navMenuToggle }) => {
+const MobileNavMenu: React.FC<Props> = ({ navMenuToggle, toggleNavMenu }) => {
   return (
     <div
       className={`bg-red-400 w-full lg:hidden mobile-menu ${
@@ -16,12 +17,14 @@ const MobileNavMenu: React.FC<Props> = ({ navMenuToggle }) => {
         <Link
           href="/"
           className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+          onClick={toggleNavMenu}
         >
           Home
         </Link>
         <Link
           href="/about"
           className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+          onClick={toggleNavMenu}
         >
           About Us
         </Link>
@@ -29,12 +32,14 @@ const MobileNavMenu: React.FC<Props> = ({ navMenuToggle }) => {
         <Link
           href="/services"
           className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+          onClick={toggleNavMenu}
         >
           Services
         </Link>
         <Link
           href="/testimonials"
           className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
+          onClick={toggleNavMenu}
         >
           Testimonials
         </Link>

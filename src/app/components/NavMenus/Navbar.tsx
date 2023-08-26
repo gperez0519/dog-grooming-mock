@@ -29,7 +29,7 @@ const Navbar = () => {
         navMenuToggle={navMenuToggle}
         toggleNavMenu={toggleNavMenu}
       />
-      <MobileNavMenu {...{ navMenuToggle }} />
+      <MobileNavMenu {...{ navMenuToggle }} {...{ toggleNavMenu }} />
       <MainNavMenu />
     </nav>
   );
